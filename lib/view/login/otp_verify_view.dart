@@ -1,12 +1,11 @@
 import 'package:bloc_setup/view/login/widgets/greeting_text_title.dart';
+import 'package:bloc_setup/view/login/widgets/otp_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../Theme/r.dart';
-import '../../res/routes/route_names.dart';
 import '../../widgets/back_nav.dart';
-import '../../widgets/input_title_widget.dart';
-import '../../widgets/input_widget.dart';
+
 import '../../widgets/login_button_widget.dart';
 
 class OtpVerifyView extends StatelessWidget {
@@ -36,8 +35,7 @@ class OtpVerifyView extends StatelessWidget {
               Gap(height * 0.04),
               Align(
                 alignment: Alignment.topLeft,
-                child: Text('OTP Code',
-
+                child: Text(' OTP Code',
                 style: TextStyle(
 fontWeight: FontWeight.w600,
                   fontFamily: R.fonts.ralewaySemiBold,
@@ -45,12 +43,16 @@ fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.left,),
               ),
+              Gap(height*0.01),
               Form(
                 key: formkey,
                 child: Column(
                   children: [
-                    InputWidget(hint: "xxxxxxxxxx"),
-                    Gap(height * 0.05),
+                    OtpInputWidget(controllers: List.generate(4, (index) => TextEditingController(),),
+                        focusNodes: List.generate(4, (index) => FocusNode(),), onChanged: (otp) {
+                        // context.read<OtpBloc>().add(UpdateOtp(otp));
+                      },),
+                    Gap(40),
 
                     LoginButtonWidget(
                       formKey: formkey,
@@ -64,6 +66,7 @@ fontWeight: FontWeight.w600,
                         // );
                       },
                     ),
+                    Gap(3),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -104,3 +107,4 @@ fontWeight: FontWeight.w600,
     );
   }
 }
+

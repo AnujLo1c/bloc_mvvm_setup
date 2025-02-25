@@ -40,7 +40,7 @@ class RecoveryView extends StatelessWidget {
                 key: formkey,
                 child: Column(
                   children: [
-                    InputWidget(hint: "xxxxxxxxxx"),
+                    // InputWidget(hint: "xxxxxxxxxx", textEditingController: TextEditingController(), focusNode: FocusNode(),),
                     Gap(height * 0.05),
 
                     LoginButtonWidget(

@@ -39,15 +39,15 @@ class RegisterView extends StatelessWidget {
                     children: [
                       InputTitleWidget(title: "Your Name"),
                       Gap(height*0.01),
-                      InputWidget(hint:"xxxxxxxxxx"),
+                      // InputWidget(hint:"xxxxxxxxxx", textEditingController: TextEditingController(), focusNode: FocusNode(),),
                       Gap(height*0.01),
                       InputTitleWidget(title: "Email Address"),
                       Gap(height*0.01),
-                      InputWidget(hint:"xyz@gmail.com"), Gap(20),
+                      // InputWidget(hint:"xyz@gmail.com", textEditingController: TextEditingController(), focusNode: FocusNode(),), Gap(20),
                       InputTitleWidget(title: "Password"),
                       Gap(height*0.01),
 
-                      InputPasswordWidget(),
+                      InputPasswordWidget(textEditingController: TextEditingController(),),
                     Gap(height*0.05),
                     LoginButtonWidget(formKey: formkey, title: "Sign Up", voidCallback: () {  },),
 
