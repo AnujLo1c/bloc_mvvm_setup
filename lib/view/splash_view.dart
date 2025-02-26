@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView> {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if(state is SplashCompleted){
-          Navigator.pushNamed(context, RouteNames.loginView);
+          Navigator.pushReplacementNamed(context, RouteNames.loginView);
         }
       },
       child: Scaffold(

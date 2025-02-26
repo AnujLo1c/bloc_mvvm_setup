@@ -11,14 +11,14 @@ import '../../widgets/input_widget.dart';
 import '../../widgets/login_button_widget.dart';
 
 class RecoveryView extends StatelessWidget {
-  const RecoveryView({super.key});
+   RecoveryView({super.key});
+    final formkey = GlobalKey<FormState>();
+   final FocusNode focusNode = FocusNode();
+final TextEditingController textEditingController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    var formkey = GlobalKey<FormState>();
-    FocusNode focusNode = FocusNode();
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
@@ -28,7 +28,7 @@ class RecoveryView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Gap(height * .08),
+              Gap(height * .07),
               BackNav(),
               Gap(height * .01),
               GreetingTextWidget(
@@ -40,7 +40,7 @@ class RecoveryView extends StatelessWidget {
                 key: formkey,
                 child: Column(
                   children: [
-                    // InputWidget(hint: "xxxxxxxxxx", textEditingController: TextEditingController(), focusNode: FocusNode(),),
+                    InputWidget(hint: "xxxxxxxxxx", textEditingController: textEditingController, focusNode: focusNode,),
                     Gap(height * 0.05),
 
                     LoginButtonWidget(

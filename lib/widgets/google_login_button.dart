@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../Theme/r.dart';
 
 class GoogleLoginButton extends StatelessWidget {
-  const GoogleLoginButton({super.key});
+  final VoidCallback function;
+  const GoogleLoginButton({super.key, required this.function});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+function();
+      },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(R.dimensions.borderRadiusMedium),

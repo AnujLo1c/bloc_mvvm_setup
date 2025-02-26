@@ -25,7 +25,7 @@ class OtpVerifyView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Gap(height * .08),
+              Gap(height * .07),
               BackNav(),
               Gap(height * .01),
               GreetingTextWidget(

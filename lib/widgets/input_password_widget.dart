@@ -5,7 +5,8 @@ import '../../../Theme/r.dart';
 
 class InputPasswordWidget extends StatelessWidget {
 final TextEditingController textEditingController;
-  const InputPasswordWidget({super.key, required this.textEditingController,});
+final FocusNode focusNode;
+  const InputPasswordWidget({super.key, required this.textEditingController, required this.focusNode,});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ final TextEditingController textEditingController;
       child: TextFormField(
 
         controller: textEditingController,
-
+focusNode: focusNode,
 
         validator: (value) {
           if (value!.isEmpty) {

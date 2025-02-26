@@ -27,7 +27,7 @@ class _InputWidgetState extends State<InputWidget> {
         borderRadius: BorderRadius.circular(R.dimensions.borderRadiusMedium),
       ),
       child: TextFormField(
-autofocus: false,
+
 focusNode: widget.focusNode,
         controller: widget.textEditingController,
         textInputAction: TextInputAction.done,

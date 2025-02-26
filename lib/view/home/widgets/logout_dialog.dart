@@ -16,12 +16,12 @@ class LogoutDialog extends StatelessWidget {
       content: Text(desc),
       actions: [
         TextButton(
-          onPressed: () => Get.back(),
+          onPressed: () => Navigator.pop(context),
           child: const Text("No"),
         ),
         TextButton(
           onPressed: () {
-            Get.back();
+            Navigator.pop(context);
             onConfirm();
           },
           child: const Text("Yes"),
