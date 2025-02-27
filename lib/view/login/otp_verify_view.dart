@@ -1,6 +1,9 @@
+import 'package:bloc_setup/cubit/resend_timer_cubit.dart';
 import 'package:bloc_setup/view/login/widgets/greeting_text_title.dart';
 import 'package:bloc_setup/view/login/widgets/otp_input_widget.dart';
+import 'package:bloc_setup/view_models/controller/login/otp_verify_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import '../../Theme/r.dart';
@@ -9,14 +12,20 @@ import '../../widgets/back_nav.dart';
 import '../../widgets/login_button_widget.dart';
 
 class OtpVerifyView extends StatelessWidget {
-  const OtpVerifyView({super.key});
+  OtpVerifyView({super.key});
+   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    var formkey = GlobalKey<FormState>();
+OtpVerifyController otpVerifyController=OtpVerifyController(context,formkey);
 
-    return Scaffold(
+// print(formkey);
+// print(GlobalKey<FormState>());
+
+    return BlocProvider(
+  create: (context) => ResendTimerCubit(),
+  child: Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
         height: height,
@@ -38,7 +47,7 @@ class OtpVerifyView extends StatelessWidget {
                 child: Text(' OTP Code',
                 style: TextStyle(
 fontWeight: FontWeight.w600,
-                  fontFamily: R.fonts.ralewaySemiBold,
+                  fontFamily: R.fonts.raleway,
                   fontSize: R.dimensions.textSizeSemiMedium
                 ),
                 textAlign: TextAlign.left,),
@@ -51,7 +60,8 @@ fontWeight: FontWeight.w600,
                     OtpInputWidget(controllers: List.generate(4, (index) => TextEditingController(),),
                         focusNodes: List.generate(4, (index) => FocusNode(),), onChanged: (otp) {
                         // context.read<OtpBloc>().add(UpdateOtp(otp));
-                      },),
+                      },
+                    formKey:formkey),
                     Gap(40),
 
                     LoginButtonWidget(
@@ -82,18 +92,22 @@ fontWeight: FontWeight.w600,
                             "Resend Code",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontFamily: R.fonts.ralewayMedium,
+                              fontFamily: R.fonts.raleway,
                               fontSize: R.dimensions.textSizeVerySmall,
                               color: R.colors.lightText,
                             ),
                           ),
                         ),
-                        Text("00:30",style: TextStyle(
+                        BlocBuilder<ResendTimerCubit, int >(
+  builder: (context, state) {
+    return Text("00:$state",style: TextStyle(
                           fontWeight: FontWeight.w400,
-                          fontFamily: R.fonts.ralewayMedium,
+                          fontFamily: R.fonts.raleway,
                           fontSize: R.dimensions.textSizeVerySmall,
                           color: R.colors.lightText,
-                        ),)
+                        ),);
+  },
+)
                       ],
                     ),
 
@@ -104,7 +118,8 @@ fontWeight: FontWeight.w600,
           ),
         ),
       ),
-    );
+    ),
+);
   }
 }
 

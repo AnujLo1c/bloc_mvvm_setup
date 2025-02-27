@@ -32,7 +32,7 @@ class NotifyDialog extends StatelessWidget {
                 "Check Your Email",
                 style: TextStyle(
                   fontSize: R.dimensions.textSizeSmall,
-                  fontFamily: R.fonts.ralewayBold,
+                  fontFamily: R.fonts.raleway,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -44,7 +44,7 @@ class NotifyDialog extends StatelessWidget {
                   style: TextStyle(
                     color: R.colors.lightText,
                     fontSize: R.dimensions.textSizeSmall,
-                    fontFamily: R.fonts.poppinsMedium,
+                    fontFamily: R.fonts.poppins,
                     fontWeight: FontWeight.w400,
                   ),
                   textAlign: TextAlign.center,

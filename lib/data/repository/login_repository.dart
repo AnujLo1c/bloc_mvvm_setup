@@ -13,7 +13,7 @@ class LoginRepository {
     if(response==null){
       return "null";
     }
-    return response ;
+    return response as Map<String,dynamic>;
   }
 
   fetchUserDetails(String token) async{

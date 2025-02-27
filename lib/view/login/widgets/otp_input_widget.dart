@@ -7,11 +7,13 @@ class OtpInputWidget extends StatelessWidget {
   final List<FocusNode> focusNodes;
   final ValueChanged<String> onChanged;
 
+  final dynamic formKey;
+
   const OtpInputWidget({
     super.key,
     required this.controllers,
     required this.focusNodes,
-    required this.onChanged,
+    required this.onChanged, required this.formKey,
   });
 
   @override
@@ -28,12 +30,13 @@ decoration: BoxDecoration(
 ),
           margin: const EdgeInsets.symmetric(horizontal: 5),
           child: TextField(
+
             controller: controllers[index],
             focusNode: focusNodes[index],
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             maxLength: 1,
-            style:  TextStyle(fontFamily: R.fonts.poppinsRegular, fontWeight: FontWeight.w600,
+            style:  TextStyle(fontFamily: R.fonts.poppins, fontWeight: FontWeight.w600,
             fontSize: R.dimensions.textSizeSmall+2,color: Colors.black),//
             decoration: InputDecoration(
               counterText: "",

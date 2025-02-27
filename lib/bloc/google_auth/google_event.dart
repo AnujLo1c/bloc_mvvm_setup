@@ -9,6 +9,10 @@ sealed class GoogleEvent extends Equatable {
 final class GoogleSignInEvent extends GoogleEvent{
 
 }
-final class GoogleSignOutEvent extends GoogleEvent{
 
+final class GoogleSignOutEvent extends GoogleEvent{
+}
+final class GoogleSessionExistEvent extends GoogleEvent{
+  final GoogleUserModel googleUserModel;
+  GoogleSessionExistEvent({required this.googleUserModel});
 }

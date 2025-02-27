@@ -1,6 +1,10 @@
+import 'dart:math';
+
+import 'package:bloc_setup/bloc/login/login_bloc.dart';
 import 'package:bloc_setup/res/routes/route_names.dart';
 import 'package:bloc_setup/view/login/widgets/bottom_text_widget.dart';
 import 'package:bloc_setup/view/login/widgets/greeting_text_title.dart';
+import 'package:bloc_setup/view_models/controller/login/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -17,21 +21,31 @@ class LoginView extends StatelessWidget {
   LoginView({super.key});
 
   final formKey = GlobalKey<FormState>();
-
-  final FocusNode _emailFocusNode = FocusNode();
-  final FocusNode _passwordFocusNode = FocusNode();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final LoginController loginController=LoginController(context,formKey,emailFocusNode,passwordFocusNode);
     final height = MediaQuery.of(context).size.height;
 
-    return BlocListener<GoogleBloc, GoogleState>(
+    return BlocListener<LoginBloc, LoginState>(
+  listener: (context, state) {
+    if (state is LoginCompleted) {
+      FocusScope.of(context).unfocus();
+      loginController.navigateToHome();
+    } else if (state is LoginError) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.message), backgroundColor: Colors.red),
+      );
+    }
+  },
+  child: BlocListener<GoogleBloc, GoogleState>(
       listener: (context, state) {
         if (state is GoogleCompleted) {
           FocusScope.of(context).unfocus();
-          Navigator.pushNamed(context, RouteNames.homeView);
+          loginController.navigateToHome();
         } else if (state is GoogleError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message), backgroundColor: Colors.red),
@@ -51,7 +65,7 @@ class LoginView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Gap(height * 0.07),
-                  BackNav(),
+                  BackNav(closeApp:true),
                   GreetingTextWidget(
                     title: "Hello Again!",
                     subtitle: "Fill Your Details Or Continue With Social Media",
@@ -66,15 +80,15 @@ class LoginView extends StatelessWidget {
                         Gap(height * 0.01),
                         InputWidget(
                           hint: "xyz@gmail.com",
-                          textEditingController: _emailController,
-                          focusNode: _emailFocusNode,
+                          textEditingController: emailController,
+                          focusNode: emailFocusNode,
                         ),
                         Gap(20),
                         InputTitleWidget(title: "Password"),
                         Gap(height * 0.01),
                         InputPasswordWidget(
-                          textEditingController: _passwordController,
-                          focusNode: _passwordFocusNode,
+                          textEditingController: passwordController,
+                          focusNode: passwordFocusNode,
                         ),
                       ],
                     ),
@@ -84,41 +98,39 @@ class LoginView extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, RouteNames.recoveryView);
+                       loginController.navigateToRecovery();
                       },
                       child: Text(
                         "Recovery Password",
-                        style: TextStyle(color: R.colors.lightText),
+                        style: TextStyle(
+                          fontSize: R.dimensions.textSizeVerySmall,
+                            fontFamily: R.fonts.poppins,
+                            color: R.colors.lightText),
                       ),
                     ),
                   ),
                   Gap(height * 0.01),
-                  BlocBuilder<GoogleBloc, GoogleState>(
+                  BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
                       return LoginButtonWidget(
                         formKey: formKey,
                         title:
-                            state is GoogleLoading
+                            state is LoginLoading
                                 ? "Signing In..."
                                 : "Sign In",
-                        voidCallback: () {
-                          if (formKey.currentState!.validate()) {
-
-                          }
-                        },
+                        voidCallback: () => loginController.onLogin(),
                       );
                     },
                   ),
 
                   Gap(height * 0.03),
-
-                  GoogleLoginButton(function:(){ context.read<GoogleBloc>().add(GoogleSignInEvent());}),
+                  GoogleLoginButton(function:()=>loginController.onGoogleLogin()),
                   Spacer(),
                   BottomTextWidget(
                     text: "New User?",
                     buttonText: "Create Account",
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteNames.registerView);
+                      loginController.navigateToRegister();
                     },
                   ),
                   Gap(20),
@@ -128,6 +140,7 @@ class LoginView extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ),
+);
   }
 }

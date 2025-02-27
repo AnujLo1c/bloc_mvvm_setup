@@ -10,11 +10,11 @@ sealed class GoogleState extends Equatable{
 final class GoogleInitial extends GoogleState {}
 final class GoogleLoading extends GoogleState {}//dialog
 final class GoogleCompleted extends GoogleState {
-final User userCredential;
-GoogleCompleted(this.userCredential);
+final GoogleUserModel googleUserModel;
+GoogleCompleted(this.googleUserModel);
 @override
 
-  List<Object?> get props => [userCredential];
+  List<Object?> get props => [googleUserModel];
 
 }//nav,notify
 final class GoogleError extends GoogleState {

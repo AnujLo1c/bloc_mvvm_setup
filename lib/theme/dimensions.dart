@@ -14,7 +14,7 @@ class _ResDimensions {
   double get iconSizeMedium => 30;
   double get iconSizeLarge => 40;
 
-   double get textSizeVerySmall => 12;
+   double get textSizeVerySmall => 14;
    double get textSizeSmall => 16;
    double get textSizeSemiMedium => 21;
    double get textSizeMedium => 24;

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/google_auth/google_bloc.dart';
+import 'bloc/login/login_bloc.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -21,12 +22,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => GoogleAuthRepository(),
+    return MultiRepositoryProvider(
+      providers:[
+        RepositoryProvider(create: (context) => GoogleAuthRepository()),
+        RepositoryProvider(create: (context) => LoginRepository()),
+      ] ,
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => SplashBloc()),
           BlocProvider(create: (context) => GoogleBloc(RepositoryProvider.of<GoogleAuthRepository>(context))),
+          BlocProvider(create: (context) => LoginBloc(RepositoryProvider.of<LoginRepository>(context))),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

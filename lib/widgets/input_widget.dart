@@ -40,7 +40,7 @@ focusNode: widget.focusNode,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: R.dimensions.paddingSmall * 2),
           hintText: widget.hint,
-          hintStyle: TextStyle(color: R.colors.lightText),
+          hintStyle: TextStyle(fontFamily: R.fonts.poppins,color: R.colors.lightText),
           border: InputBorder.none,
         ),
       ),

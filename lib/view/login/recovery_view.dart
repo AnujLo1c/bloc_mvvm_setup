@@ -47,14 +47,10 @@ final TextEditingController textEditingController=TextEditingController();
                       formKey: formkey,
                       title: "Reset password",
                       voidCallback: () {
-                            print("object");
-                            Navigator.pushNamed(context, RouteNames.otpView);
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (context) {
-                        //     return NotifyDialog();
-                        //     },
-                        // );
+                        if(formkey.currentState!.validate()) {
+
+                          Navigator.pushNamed(context, RouteNames.otpView);
+                        }
                       },
                     ),
                   ],

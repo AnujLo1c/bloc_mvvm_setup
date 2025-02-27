@@ -1,11 +1,11 @@
 part of 'r.dart';
 class _ResAssets {
 
-  String get google => _png('splash');
+  String get google => _png('google');
   String get nike => _png('nike');
   String get back => _svg('back');
-  String get eyeSlash => _svg('eye_slash');
-  String get eye => _svg('eye');
+  // String get eyeSlash => _svg('eye_slash');
+  String get eyeslash => _png('eye');
 
 
 }

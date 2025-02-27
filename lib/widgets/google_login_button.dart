@@ -25,7 +25,13 @@ function();
       ),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset(R.assets.google,height: R.dimensions.iconSizeMedium,), Text("Sign In With Google",style: TextStyle(color: Colors.black,fontSize: R.dimensions.textSizeSmall),)]),
+          children: [Image.asset(R.assets.google,height: R.dimensions.iconSizeMedium,),
+            Text(" Sign In With Google",
+              style: TextStyle(
+                  fontFamily:R.fonts.raleway,
+                  color: Colors.black,
+                  fontSize: R.dimensions.textSizeSmall
+              ),)]),
     );
   }
 }

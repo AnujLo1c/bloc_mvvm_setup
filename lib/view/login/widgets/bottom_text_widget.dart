@@ -17,17 +17,18 @@ class BottomTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           text,
-          style: TextStyle(fontSize: R.dimensions.textSizeSmall),
+          style: TextStyle(fontSize: R.dimensions.textSizeSmall,fontFamily: R.fonts.raleway,
+          color: R.colors.lightText),
         ),
-        TextButton(
-          onPressed: onPressed,
+        GestureDetector(
+          onTap: onPressed,
           child: Text(
             buttonText,
-            style: TextStyle(color: Colors.black, fontSize: R.dimensions.textSizeSmall),
+            style: TextStyle(color: Colors.black, fontSize: R.dimensions.textSizeSmall,fontFamily: R.fonts.raleway),
           ),
         ),
       ],

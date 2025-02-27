@@ -21,10 +21,10 @@ class GreetingTextWidget extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontFamily: R.fonts.poppinsMedium,
+            fontFamily: R.fonts.raleway,
             color: Colors.black,
             fontSize: R.dimensions.textSizeLarge,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
 
           ),
         ),
@@ -34,8 +34,10 @@ class GreetingTextWidget extends StatelessWidget {
           child: Text(
             subtitle,
             style: TextStyle(
+              fontFamily: R.fonts.poppins,
               color: R.colors.lightText,
               fontSize: R.dimensions.textSizeSmall,
+              fontWeight: FontWeight.w400
             ),
             maxLines: 2,
             textAlign: TextAlign.center,

@@ -25,7 +25,7 @@ class LoginButtonWidget extends StatelessWidget {
             minimumSize: Size(MediaQuery.of(context).size.width-R.dimensions.paddingMedium, 50),
         ),
 
-        child:  false?CircularProgressIndicator():Text(title,style: TextStyle(fontSize: R.dimensions.textSizeSmall),)
+        child:  Text(title,style: TextStyle(fontSize: R.dimensions.textSizeSmall),)
     );
   }
 }

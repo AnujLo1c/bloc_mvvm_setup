@@ -10,6 +10,8 @@ class InputTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
         alignment: Alignment.bottomLeft,
-        child: Text(title,style: TextStyle(fontSize: R.dimensions.textSizeSmall),));
+        child: Text(title,style: TextStyle(
+            fontFamily: R.fonts.raleway,
+            fontSize: R.dimensions.textSizeSmall),));
   }
 }
