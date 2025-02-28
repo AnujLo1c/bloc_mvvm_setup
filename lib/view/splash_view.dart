@@ -1,5 +1,6 @@
 import 'package:bloc_setup/bloc/login/login_bloc.dart';
 import 'package:bloc_setup/res/routes/route_names.dart';
+import 'package:bloc_setup/view_models/controller/splash_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Theme/r.dart';
@@ -19,30 +20,14 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    context.read<SplashBloc>().add(AppStartedEvent());
+    SplashViewModel.init(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
-        if(state is SplashCompletedL){
-          UserModel? userModel=state.userModel;
-          if(userModel!=null || userModel?.isLogin==true){
-            context.read<LoginBloc>().add(LoginSessionExistEvent(state.userModel));
-          Navigator.pushReplacementNamed(context, RouteNames.homeView);
-          }
-        }
-        if(state is SplashCompletedG){
-          GoogleUserModel? googleUserModel=state.googleUserModel;
-          if(googleUserModel!=null){
-            context.read<GoogleBloc>().add(GoogleSessionExistEvent(googleUserModel: googleUserModel));
-            Navigator.pushReplacementNamed(context, RouteNames.homeView);
-          }
-        }
-        if(state is SplashCompleted){
-          Navigator.pushReplacementNamed(context, RouteNames.loginView);
-        }
+        SplashViewModel.handleState(context, state);
       },
       child: Scaffold(
         backgroundColor: R.colors.primary,

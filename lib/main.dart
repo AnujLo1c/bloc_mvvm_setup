@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/google_auth/google_bloc.dart';
 import 'bloc/login/login_bloc.dart';
+import 'bloc/otp/otp_bloc.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => SplashBloc()),
           BlocProvider(create: (context) => GoogleBloc(RepositoryProvider.of<GoogleAuthRepository>(context))),
           BlocProvider(create: (context) => LoginBloc(RepositoryProvider.of<LoginRepository>(context))),
+          BlocProvider(create: (context) => OtpBloc(ticker: Ticker())),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -1,6 +1,7 @@
 import 'package:bloc_setup/res/routes/route_names.dart';
 import 'package:bloc_setup/view/login/widgets/bottom_text_widget.dart';
 import 'package:bloc_setup/view/login/widgets/greeting_text_title.dart';
+import 'package:bloc_setup/view_models/controller/login/register_view_model.dart';
 import 'package:bloc_setup/widgets/back_nav.dart';
 import 'package:bloc_setup/widgets/google_login_button.dart';
 import 'package:bloc_setup/widgets/login_button_widget.dart';
@@ -27,7 +28,10 @@ final FocusNode _passfn=FocusNode();
   @override
   Widget build(BuildContext context) {
     double height=MediaQuery.of(context).size.height;
+
     return Scaffold(
+
+
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -57,21 +61,21 @@ final FocusNode _passfn=FocusNode();
 
                       InputPasswordWidget(textEditingController: _passController,focusNode: _passfn,),
                     Gap(height*0.05),
-                    LoginButtonWidget(formKey: formkey, title: "Sign Up", voidCallback: () {  },),
+                    LoginButtonWidget(formKey: formkey, title: "Sign Up", voidCallback: ()=>RegisterViewModel.signUp(context,formkey,_nameController.text,_emailController.text,_passController.text),),
 
                     ],
                   ),
                 ),
                 Gap(height*0.02),
                 GoogleLoginButton(function: (){
-                  context.read<GoogleBloc>().add(GoogleSignInEvent());
+                 RegisterViewModel.googleSignIn(context);
                 },),
                 Spacer(),
                 BottomTextWidget(
                     text: "Already Have Account? ",
                     buttonText: "Log In",
                     onPressed: (){
-                      Navigator.pushNamed(context, RouteNames.loginView);
+                     RegisterViewModel.navigateToLogin(context);
                     }),
                 Gap(20)
               ],

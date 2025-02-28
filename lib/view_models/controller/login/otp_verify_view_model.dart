@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/otp/otp_bloc.dart';
 
 class OtpVerifyController {
-  final BuildContext context;
-  final GlobalKey<FormState> formKey;
 
 
-  OtpVerifyController(this.context,this.formKey);
-
-  void dispose() {
+  static void dispose() {
 
   }
 
-  void onOtpChanged(String otp) {
-    
-  }
 
-  void onVerify() {
-    if (formKey.currentState!.validate()) {
+
+  static void onVerify(GlobalKey<FormState> formkey) {
+    if (formkey.currentState!.validate()) {
       
     }
   }
 
-  void onResendOtp() {
-    
+  static void onResendOtp(BuildContext context) {
+    context.read<OtpBloc>().add(StartResendTimer());
   }
 }

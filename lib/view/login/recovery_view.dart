@@ -1,6 +1,7 @@
 import 'package:bloc_setup/res/routes/route_names.dart';
 import 'package:bloc_setup/view/login/widgets/greeting_text_title.dart';
 import 'package:bloc_setup/view/login/widgets/notify_dialog.dart';
+import 'package:bloc_setup/view_models/controller/login/recovery_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -46,12 +47,7 @@ final TextEditingController textEditingController=TextEditingController();
                     LoginButtonWidget(
                       formKey: formkey,
                       title: "Reset password",
-                      voidCallback: () {
-                        if(formkey.currentState!.validate()) {
-
-                          Navigator.pushNamed(context, RouteNames.otpView);
-                        }
-                      },
+                      voidCallback: () => RecoveryViewModel.resetPassword(context,formkey,textEditingController,focusNode),
                     ),
                   ],
                 ),
